@@ -1,6 +1,13 @@
-config owrt owrt
-    option use_uci 0
+config owrt 'owrt'
+        option use_uci '1'
 
-config mosquitto mosquitto
+config mosquitto 'mosquitto'
+        option log_dest 'syslog'
+        option allow_anonymous '1'
 
-config persistence persistence
+config persistence 'persistence'
+        option persistence '0'
+
+config listener
+        option port '1883'
+        option protocol 'mqtt'
