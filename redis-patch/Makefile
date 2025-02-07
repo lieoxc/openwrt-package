@@ -80,7 +80,7 @@ define Package/redis-server/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/redis.init $(1)/etc/init.d/redis
 	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/redis.conf $(1)/etc/
+	$(INSTALL_DATA) ./files/redis.conf $(1)/etc/
 	$(SED) "s|^dir .*|dir /var/lib/redis|" $(1)/etc/redis.conf
 endef
 
