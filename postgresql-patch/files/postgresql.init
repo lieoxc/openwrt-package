@@ -24,7 +24,8 @@ cleanup() {
 
 start_service() {
 	. /lib/functions/postgresql.sh
-
+	mkdir -p /mnt/postgresql/data
+	chown -R postgres:postgres /mnt/postgresql/data
 	config_load "postgresql"
 	config_get pgdata config PGDATA
 	config_get pgopts config PGOPTS
