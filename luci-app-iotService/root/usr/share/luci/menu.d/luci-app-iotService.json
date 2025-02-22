@@ -1,0 +1,17 @@
+{
+  "admin/iotService/": {
+    "title": "iotService",
+    "order": 60,
+    "action": {
+      "type": "firstchild"
+    }
+  },
+  "admin/iotService/html": {
+    "title": "Open iotService",
+    "order": 2,
+    "action": {
+      "type": "view",
+      "path": "iotService/htmlview"
+    }
+  }
+}
