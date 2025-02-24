@@ -49,7 +49,7 @@ start_service() {
                 pg_init_data ${pgdata}
                 [ $? -gt 0 ] && return 1
         else #如果是已经初始化过的
-                mkdir -p /mnt/pg_wal/archive_status
+                mkdir -p /mnt/postgresql/data/pg_wal/archive_status
                 mkdir -p /mnt/postgresql/data/pg_commit_ts
                 mkdir -p /mnt/postgresql/data/pg_dynshmem
                 mkdir -p /mnt/postgresql/data/pg_notify
