@@ -16,7 +16,7 @@ return view.extend({
 			'click': ui.createHandlerFn(this, function(ev) {
 				window.open('http://192.168.10.1:9999', '_blank')
 			})
-		}, ['%:Go to Iot Service%']));
+		}, ['Go to Iot Service']));
 		listContainer.appendChild(list);
 		body.appendChild(listContainer);
 		return body;
