@@ -11,8 +11,8 @@ msgstr ""
 msgid "iotService"
 msgstr "IOT服务"
 
-msgid "Go to Iot Service"
-msgstr "点击跳转iot页面"
+msgid "Go To Device Manage Page"
+msgstr "点击进入设备管理页面"
 
-msgid "Open iotService"
-msgstr "IOT 页面"
+msgid "Device Manage Services"
+msgstr "设备管理服务"

@@ -1,0 +1,39 @@
+<%+header%>
+
+<style type="text/css"></style>
+
+<script type="text/javascript">
+    // 页面加载完成后获取 LAN IP
+    document.addEventListener("DOMContentLoaded", function() {
+        // 调用后端接口获取 LAN IP
+        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "iotService", "get_lan_ip")%>', null,
+            function(x, data) {
+                if (data && data.lan_ip) {
+                    var button = document.getElementById("goto_device_manage");
+                    button.onclick = function() {
+                        window.location.href = 'http://' + data.lan_ip + ':9999';
+                    };
+                } else {
+                    console.error("Failed to get LAN IP");
+                }
+            }
+        );
+    });
+</script>
+
+<h2 name="content"><%:Device Manage Services%></h2>
+<div class="table" width="100%">
+  <div class="tr cbi-rowstyle-2">
+    <div class="td right">
+      <input
+        type="button"
+        id="goto_device_manage"
+        style="margin-right: 45%"
+        ;
+        class="btn cbi-button cbi-button-neutral"
+        value="<%:Go To Device Manage Page%>"
+      />
+    </div>
+  </div>
+</div>
+<%+footer%>
