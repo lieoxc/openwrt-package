@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=redis-custom
+PKG_NAME:=redis
 PKG_VERSION:=6.2.14
 PKG_RELEASE:=1
 
