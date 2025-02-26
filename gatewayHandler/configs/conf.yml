@@ -1,0 +1,15 @@
+log:
+  # 0-控制台输出 1-文件输出 2-文件和控制台输出
+  adapter_type: 0
+  # 文件最多保存多少天
+  maxdays: 7
+  # 日志级别 (panic fatal error warn info debug trace)
+  level: debug # 默认info
+  # 每个文件保存的最大行数
+  maxlines: 10000
+web:
+  addr: 127.0.0.1:9999
+mqtt:
+  broker: 192.168.6.175:1883 # 默认localhost:1883
+  user: root # 默认root
+  pass: root # 默认root
