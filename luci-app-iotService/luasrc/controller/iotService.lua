@@ -5,6 +5,7 @@ function index()
 	entry({"admin", "services", "iotService"}, alias("admin", "services", "iotService", "iotWeb"), translate("iotService"), 100).dependent = true
 
     entry({"admin", "services", "iotService", "iotWeb"},template("iotService/iotWeb")).leaf = true
+    entry({"admin", "services", "iot_connect"},cbi("iotService/iot_connect"), translate("IOTConnect")).leaf = true
     entry({"admin", "services", "iotService", "get_lan_ip"}, call("get_lan_ip"), nil).leaf = true
 end
 

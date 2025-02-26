@@ -9,10 +9,44 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 msgid "iotService"
-msgstr "IOT服务"
+msgstr "设备管理"
 
 msgid "Go To Device Manage Page"
-msgstr "点击进入设备管理页面"
+msgstr "点击进入本地管理页面"
 
 msgid "Device Manage Services"
-msgstr "设备管理服务"
+msgstr "本地设备管理服务"
+
+msgid "IOTConnect"
+msgstr "IOT平台连接"
+
+msgid "Set The Config To Connect IOT Platform"
+msgstr "配置路由器与IOT平台的连接"
+
+msgid "MQTT Setting"
+msgstr "MQTT 设置"
+
+msgid "publicAddr"
+msgstr "公网服务器地址"
+
+msgid "publicPort"
+msgstr "公网服务器端口"
+
+msgid "privateAddr"
+msgstr "内网服务器地址"
+
+msgid "privatePort"
+msgstr "内网服务器端口"
+
+
+msgid "Enable Public"
+msgstr "启用公网平台"
+
+msgid "Enable Private"
+msgstr "启用内网平台"
+
+msgid "After Enable, router will report data to Public Server."
+msgstr "启用后，路由器将上报数据到所配置的公网服务器"
+
+msgid "After Enable, router will report data to Private Server."
+msgstr "启用后，路由器将上报数据到所配置的内网服务器"
