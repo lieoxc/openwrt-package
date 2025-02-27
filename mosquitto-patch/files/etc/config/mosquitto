@@ -9,5 +9,5 @@ config persistence 'persistence'
         option persistence '0'
 
 config listener
-        option port '1883'
+        option port '2883'
         option protocol 'mqtt'

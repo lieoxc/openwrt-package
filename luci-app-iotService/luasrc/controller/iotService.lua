@@ -2,11 +2,12 @@ module("luci.controller.iotService", package.seeall)
 local http = require "luci.http"
 
 function index()
-	entry({"admin", "services", "iotService"}, alias("admin", "services", "iotService", "iotWeb"), translate("iotService"), 100).dependent = true
+    entry({"admin", "iotService"}, firstchild(), translate("IOT服务"), 25).dependent=false
+	entry({"admin", "iotService", "iotService"}, alias("admin", "iotService", "iotService", "iotWeb"), translate("Device Manage Services"), 100).dependent = true
 
-    entry({"admin", "services", "iotService", "iotWeb"},template("iotService/iotWeb")).leaf = true
-    entry({"admin", "services", "iot_connect"},cbi("iotService/iot_connect"), translate("IOTConnect")).leaf = true
-    entry({"admin", "services", "iotService", "get_lan_ip"}, call("get_lan_ip"), nil).leaf = true
+    entry({"admin", "iotService", "iotService", "iotWeb"},template("iotService/iotWeb")).leaf = true
+    entry({"admin", "iotService", "iot_connect"},cbi("iotService/iot_connect"), translate("IOTConnect")).leaf = true
+    entry({"admin", "iotService", "iotService", "get_lan_ip"}, call("get_lan_ip"), nil).leaf = true
 end
 
 
