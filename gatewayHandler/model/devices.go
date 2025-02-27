@@ -20,4 +20,5 @@ type HTTPRes struct {
 const (
 	DefaultTenantId       = "d616bcbb"
 	DefaultGatewayCfgName = "气象站"
+	DefaultGatewayCfgID   = "d616bcbb"
 )
