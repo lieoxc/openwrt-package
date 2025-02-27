@@ -9,7 +9,47 @@ log:
   maxlines: 10000
 web:
   addr: 127.0.0.1:9999
-mqtt:
+db:
+  psql:
+    host: 127.0.0.1 # 默认localhost
+    port: 5432 # 默认5432
+    dbname: thingspanel
+    username: postgres
+    password: postgresThingsPanel
+    time_zone: Asia/Shanghai # 默认Asia/Shanghai
+
+    idle_conns: 2 # 空闲连接池中的最大连接数，建议为open_conns的百分之5-20之间
+    open_conns: 10 # 最大打开连接数,timescaledb默认为100,考虑到其他服务也会使用数据库，建议这里设置为50
+    # SQL日志级别 (1-静音 2-错误 3-警告 4-信息)
+    log_level: 4 # 默认1
+    # 慢SQL阈值（毫秒）。慢SQL会在sqlloglevel大于等于3时输出。
+    slow_threshold: 200 # 默认200毫秒
+mqttPrivate: # 私有服务器mqtt配置
   broker: 192.168.6.175:1883 # 默认localhost:1883
   user: root # 默认root
-  pass: root # 默认root
+  pass: root # 默认root 
+  telemetry:
+    gateway_publish_topic: gateway/telemetry   #后面是气象站网关 的cfgID 和 devID
+    qos: 0
+  attributes:  
+    gateway_publish_topic: gateway/attributes #后面是气象站网关 的cfgID 和 devID
+    qos: 1
+  events:
+    gateway_publish_topic: gateway/event #后面是气象站网关 的cfgID 和 devID
+    qos: 1
+
+mqttLocal: # 本地mqtt配置
+  broker: 127.0.0.1:1883 # 默认localhost:1883
+  user: root # 默认root
+  pass: root # 默认root  
+  telemetry:
+    subscribe_topic: forward/telemetry/+/+    #后面是 Esp32CfgID 和 mac地址
+    pool_size: 10 # 消息处理线程池，默认100
+    batch_size: 100 # 默认100 最大一次批量写入数据库的数据量
+    qos: 0
+  attributes:  
+    subscribe_topic: forward/attributes/+/+ #后面是 Esp32CfgID 和 mac地址
+    qos: 1
+  events:
+    subscribe_topic: forward/event/+/+ #后面是 Esp32CfgID 和 mac地址
+    qos: 1
