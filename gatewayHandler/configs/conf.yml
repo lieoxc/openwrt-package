@@ -39,7 +39,7 @@ mqttPrivate: # 私有服务器mqtt配置
     qos: 1
 
 mqttLocal: # 本地mqtt配置
-  broker: 127.0.0.1:1883 # 默认localhost:1883
+  broker: 127.0.0.1:2883 # 默认localhost:1883
   user: root # 默认root
   pass: root # 默认root  
   telemetry:
