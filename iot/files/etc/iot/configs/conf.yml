@@ -20,7 +20,8 @@ jwt:
 
 fileStorage:
   path: /mnt/iot/files/
-
+web:
+  addr: 192.168.6.175:9999
 db:
   psql:
     host: 127.0.0.1 # 默认localhost
@@ -116,6 +117,23 @@ mqtt:
     subscribe_topic: ota/devices/progress/+/+
     qos: 1
 
+private_mqtt: # 私有服务器mqtt配置
+  broker: 192.168.6.175:1883 # 默认localhost:1883
+  user: root # 默认root
+  pass: root # 默认root 
+  telemetry:
+    gateway_publish_topic: gateway/telemetry   #后面是气象站网关 的cfgID 和 devID
+    qos: 0
+  attributes:  
+    gateway_publish_topic: gateway/attributes #后面是气象站网关 的cfgID 和 devID
+    qos: 1
+  events:
+    gateway_publish_topic: gateway/event #后面是气象站网关 的cfgID 和 devID
+    qos: 1
+  commands:
+    publish_topic: devices/command
+    gateway_subscribe_topic: gateway/command #后面是气象站网关 的cfgID , devID还有一个m essage_id
+    qos: 1
 automation_task_confg:
   once_task_limit: 100
   periodic_task_limit: 100
