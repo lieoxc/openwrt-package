@@ -1,18 +1,24 @@
 #!/bin/sh /etc/rc.common
 
 START=98
+STOP=13
 USE_PROCD=1
 
 start_service() {
-	sleep 5 # wait system network ok 
+	sleep 2 # wait system network ok 
 
 	echo "service iotService start" >/tmp/iotService.run
 
-	#procd_open_instance
-	#procd_set_param command iot
-	#procd_append_param command -config
-	#procd_append_param command /etc/iot/configs
-	#procd_set_param respawn
-	#procd_close_instance
+	procd_open_instance
+	procd_set_param command iot
+	procd_append_param command -config
+	procd_append_param command /etc/iot/configs
+	procd_set_param respawn
+	procd_close_instance
 
+}
+
+stop_service()
+{
+	killall iot >/dev/null 2>&1
 }
