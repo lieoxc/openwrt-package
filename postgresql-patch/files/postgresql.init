@@ -7,21 +7,20 @@ PROG=/usr/bin/postmaster
 USE_PROCD=1
 
 fix_hosts() {
-	# make sure localhost (without a dot) is in /etc/hosts
-	grep -q 'localhost$' /etc/hosts || echo '127.0.0.1 localhost' >> /etc/hosts
+        # make sure localhost (without a dot) is in /etc/hosts
+        grep -q 'localhost$' /etc/hosts || echo '127.0.0.1 localhost' >> /etc/hosts
 }
 
 fix_perms() {
-	# for whatever reason, /dev/null gets wrong perms
-	chmod a+w /dev/null
+        # for whatever reason, /dev/null gets wrong perms
+        chmod a+w /dev/null
 }
 
 cleanup() {
-	if [ -f "$1/postmaster.pid" ]; then
-		rm "$1/postmaster.pid"
-	fi
+        if [ -f "$1/postmaster.pid" ]; then
+                rm "$1/postmaster.pid"
+        fi
 }
-
 
 start_service() {
         . /lib/functions/postgresql.sh
@@ -49,7 +48,7 @@ start_service() {
                 pg_init_data ${pgdata}
                 [ $? -gt 0 ] && return 1
         else #如果是已经初始化过的
-                mkdir -p /mnt/postgresql/data/pg_wal/archive_status
+                mkdir -p /mnt/pg_wal/archive_status
                 mkdir -p /mnt/postgresql/data/pg_commit_ts
                 mkdir -p /mnt/postgresql/data/pg_dynshmem
                 mkdir -p /mnt/postgresql/data/pg_notify
@@ -96,23 +95,22 @@ start_service() {
         procd_close_instance
 }
 
-
 boot() {
-	_BOOT=1 start
+        _BOOT=1 start
 }
 
 service_triggers() {
-	config_load "postgresql"
-	config_get pgdata config PGDATA
-	procd_add_restart_mount_trigger "${pgdata}"
+        config_load "postgresql"
+        config_get pgdata config PGDATA
+        procd_add_restart_mount_trigger "${pgdata}"
 }
 
 stop_service() {
-	procd_send_signal "postgresql" postmaster SIGTERM
+        procd_send_signal "postgresql" postmaster SIGTERM
 }
 
 status_service() {
-	config_load "postgresql"
-	config_get pgdata config PGDATA
-	/usr/bin/pg_ctl status -U postgres -D "${pgdata}"
+        config_load "postgresql"
+        config_get pgdata config PGDATA
+        /usr/bin/pg_ctl status -U postgres -D "${pgdata}"
 }

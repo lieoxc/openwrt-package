@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=redis
-PKG_VERSION:=6.2.14
+PKG_VERSION:=6.2.6
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=https://download.redis.io/releases/
+PKG_SOURCE_URL:=http://download.redis.io/releases/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_HASH:=34e74856cbd66fdb3a684fb349d93961d8c7aa668b06f81fd93ff267d09bc277
+PKG_HASH:=5b2b8b7a50111ef395bf1c1d5be11e6e167ac018125055daa8b5c2317ae131ab
 
 PKG_MAINTAINER:=Jan Pavlinec <jan.pavlinec1@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
@@ -18,10 +18,10 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 MAKE_FLAGS+= \
-	MALLOC="libc" \
-	USE_JEMALLOC="no" \
-	PREFIX="$(PKG_INSTALL_DIR)/usr" \
-	ARCH=""
+        MALLOC="libc" \
+        USE_JEMALLOC="no" \
+        PREFIX="$(PKG_INSTALL_DIR)/usr" \
+        ARCH=""
 
 TARGET_LDFLAGS += -latomic
 
@@ -68,30 +68,30 @@ define Package/redis-server/conffiles
 endef
 
 define Build/Compile
-	$(MAKE) -C "$(PKG_BUILD_DIR)/deps/hiredis" static $(MAKE_FLAGS)  $(MAKE_VARS)
-	$(MAKE) -C "$(PKG_BUILD_DIR)/deps/linenoise" $(MAKE_FLAGS)  $(MAKE_VARS)
-	$(MAKE) -C "$(PKG_BUILD_DIR)/deps/lua" posix $(MAKE_FLAGS)  $(MAKE_VARS) AR="${AR} ru"
-	$(call Build/Compile/Default)
+        $(MAKE) -C "$(PKG_BUILD_DIR)/deps/hiredis" static $(MAKE_FLAGS)  $(MAKE_VARS)
+        $(MAKE) -C "$(PKG_BUILD_DIR)/deps/linenoise" $(MAKE_FLAGS)  $(MAKE_VARS)
+        $(MAKE) -C "$(PKG_BUILD_DIR)/deps/lua" posix $(MAKE_FLAGS)  $(MAKE_VARS) AR="${AR} ru"
+        $(call Build/Compile/Default)
 endef
 
 define Package/redis-server/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-server $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/redis.init $(1)/etc/init.d/redis
-	$(INSTALL_DIR) $(1)/etc
-	$(INSTALL_DATA) ./files/redis.conf $(1)/etc/
-	$(SED) "s|^dir .*|dir /var/lib/redis|" $(1)/etc/redis.conf
+        $(INSTALL_DIR) $(1)/usr/bin
+        $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-server $(1)/usr/bin/
+        $(INSTALL_DIR) $(1)/etc/init.d
+        $(INSTALL_BIN) ./files/redis.init $(1)/etc/init.d/redis
+        $(INSTALL_DIR) $(1)/etc
+        $(INSTALL_DATA) ./files/redis.conf $(1)/etc/
+        $(SED) "s|^dir .*|dir /var/lib/redis|" $(1)/etc/redis.conf
 endef
 
 define Package/redis-cli/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-cli $(1)/usr/bin/
+        $(INSTALL_DIR) $(1)/usr/bin
+        $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-cli $(1)/usr/bin/
 endef
 
 define Package/redis-utils/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-{check-aof,benchmark} $(1)/usr/bin/
+        $(INSTALL_DIR) $(1)/usr/bin
+        $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/redis-{check-aof,benchmark} $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,redis-full))
