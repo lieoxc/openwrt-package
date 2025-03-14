@@ -10,7 +10,7 @@ LUCI_PKGARCH:=all
 PKG_VERSION:=1.0.0
 PKG_LICENSE:=GPLv3
 PKG_LINCESE_FILES:=LICENSE
-LUCI_DEPENDS:=+luci-compat +iot
+LUCI_DEPENDS:=+luci-compat
 
 include $(TOPDIR)/feeds/luci/luci.mk
 

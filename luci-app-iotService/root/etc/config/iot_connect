@@ -2,6 +2,6 @@ config service
     option publicEnabled '0'
 	option publicAddr ''
 	option publicPort '1883'
-    option privateEnabled '0'
+    option publicEnabled '0'
 	option privateAddr ''
 	option privatePort '1883'
