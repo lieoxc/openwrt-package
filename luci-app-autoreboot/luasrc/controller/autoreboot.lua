@@ -5,7 +5,5 @@ function index()
 		return
 	end
 
-	local page = entry({"admin", "system", "autoreboot"}, cbi("autoreboot"), _("Scheduled Reboot"), 88)
-	page.dependent = true
-	page.acl_depends = { "luci-app-autoreboot" }
+	entry({"admin", "system", "autoreboot"}, cbi("autoreboot"), _("Scheduled Reboot"), 80).dependent = false
 end

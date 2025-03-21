@@ -30,10 +30,13 @@ pass = s:option(Value, "minute", translate("Minute"))
 pass.datatype = "range(0,59)"
 pass.rmempty = false
 
-
-local e = luci.http.formvalue("cbi.apply")
-if e then
-  io.popen("/etc/init.d/autoreboot restart")
-end
+-- local e = luci.http.formvalue("cbi.apply")
+-- if e then
+--     -- 使用 luci.sys.call 同步执行命令
+--     local result = luci.sys.call("/etc/init.d/autoreboot restart")
+--     if result ~= 0 then
+--         m.message = translate("Failed to apply configuration")
+--     end
+-- end
 
 return m
