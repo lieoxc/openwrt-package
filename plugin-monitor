@@ -5,31 +5,11 @@ USE_PROCD=1
 
 PROG=/etc/init.d/plugin-monitor
 
-# 定义要监控的插件列表
-PLUGINS="iot data_collect"
-
-# 检查单个插件的心跳
-check_plugin_heartbeat() {
-    local plugin_name=$1
-    local heartbeat_file="/tmp/${plugin_name}_heartbeat"
-    local timeout=30  # 5分钟超时
-
-    if [ ! -f "$heartbeat_file" ] || [ $(($(date +%s) - $(stat -c %Y "$heartbeat_file"))) -gt $timeout ]; then
-        echo "插件 ${plugin_name} 心跳超时，正在重启..."
-        /etc/init.d/${plugin_name} restart
-    fi
-}
-
-# 监控所有插件
-monitor_plugins() {
-    for plugin in $PLUGINS; do
-        check_plugin_heartbeat "$plugin"
-    done
-}
 
 start_service() {
+
     procd_open_instance
-    procd_set_param command /bin/sh -c "while true; do monitor_plugins; sleep 60; done"
+    procd_set_param command /bin/sh /etc/init.d/plugin-monitor.sh
     procd_set_param respawn
     procd_set_param stderr 1
     procd_close_instance
@@ -38,4 +18,9 @@ start_service() {
 reload_service() {
     stop
     start
+}
+
+stop_service() {
+    procd_open_instance
+    procd_close_instance
 } 
