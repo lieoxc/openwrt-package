@@ -42,7 +42,7 @@ check_plugin_heartbeat() {
 
 # 监控所有插件
 monitor_plugins() {
-    for plugin in iot data_collect; do
+    for plugin in iotService data_collect; do
         check_plugin_heartbeat "$plugin"
     done
 }
