@@ -23,7 +23,7 @@ cleanup() {
 }
 
 start_service() {
-        if [ -d "/path/to/directory" ]; then
+        if [ -d "/mnt/postgresql/data" ]; then
             sudo -u postgres pg_resetwal -f /mnt/postgresql/data
         fi
         
