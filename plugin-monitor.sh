@@ -12,7 +12,11 @@ log_message() {
 # 检查单个插件的心跳
 check_plugin_heartbeat() {
     local plugin_name=$1
-    local heartbeat_file="/tmp/${plugin_name}_heartbeat"
+    if [ "$plugin_name" = "iotService" ]; then
+        local heartbeat_file="/tmp/iot_heartbeat"
+    else
+        local heartbeat_file="/tmp/${plugin_name}_heartbeat"
+    fi
     local timeout=30  # 5分钟超时
     
     #log_message "正在检查插件 ${plugin_name} 的心跳状态..."
