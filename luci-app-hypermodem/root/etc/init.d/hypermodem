@@ -176,6 +176,7 @@ service_triggers()
 }
 
 start_service() {
+	sleep 5 # wait system network ok 
 	config_load hypermodem
 	config_foreach run_dial service
 }
