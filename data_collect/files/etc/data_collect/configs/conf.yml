@@ -23,3 +23,9 @@ mqtt:
     pool_size: 10 # 消息处理线程池，默认100
     batch_size: 100 # 默认100 最大一次批量写入数据库的数据量
     qos: 0
+db:
+  redis:
+    addr: 127.0.0.1:6379 # 默认localhost:6379
+    db: 1 # 默认0
+    db1: 10 # 默认10，不能是0，用户设备状态管理
+    password:
