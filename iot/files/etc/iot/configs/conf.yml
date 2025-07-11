@@ -11,7 +11,7 @@ log:
   # 文件最多保存多少天
   maxdays: 7
   # 日志级别 (panic fatal error warn info debug trace)
-  level: debug # 默认info
+  level: info # 默认info
   # 每个文件保存的最大行数
   maxlines: 10000
   path: /mnt/iot/logs
