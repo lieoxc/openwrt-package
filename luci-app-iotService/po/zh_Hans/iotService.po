@@ -50,3 +50,18 @@ msgstr "启用后，路由器将上报数据到所配置的公网服务器"
 
 msgid "After Enable, router will report data to Private Server."
 msgstr "启用后，路由器将上报数据到所配置的内网服务器"
+
+msgid "MQTT ClientID"
+msgstr "MQTT ClientID"
+
+msgid "userName"
+msgstr "MQTT用户名"
+
+msgid "password"
+msgstr "MQTT密码"
+
+msgid "gatewayID"
+msgstr "网关设备编码"
+
+msgid "esp32ModelName"
+msgstr "esp32子设备模板名称"
