@@ -4,6 +4,11 @@ START=98
 STOP=13
 USE_PROCD=1
 
+service_triggers()
+{
+	procd_add_reload_trigger "iot_connect"
+}
+
 start_service() {
 	sleep 2 # wait system network ok 
 
@@ -15,4 +20,14 @@ start_service() {
 	procd_append_param command /etc/iot/configs
 	procd_set_param respawn
 	procd_close_instance
+}
+
+reload_service() {
+	stop
+	start
+}
+
+stop_service()
+{
+	killall iot >/dev/null 2>&1
 }
